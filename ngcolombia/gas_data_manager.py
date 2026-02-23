@@ -15,28 +15,31 @@ import base64
 class ngDataManager:
     def __init__(self, apikey: str = None):
         """
+        ## Natural Gas Data Manager:
         Gestiona la conexión y obtención de datos del gas natural de Colombia desde 2019-07-01 hasta la fecha actual.
         Los datos se actualizan a las 6:00 a.m. (UTC-5) todos los días.
         Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co
 
         Ejemplo de uso:
-        # 1. Obtener la lista de puntos disponibles
+        ```python
+        # Obtener la lista de puntos disponibles
         from ngcolombia import ngDataManager
 
         ngData = NgDataManager(apikey='su_api_key') # Reemplazar su_api_key por la API key obtenida
         puntos = ngData.obtener_puntos()
         print(puntos)
 
-        # 2. Obtener los datos de un punto para una fecha específica
-        datos = ngData.datos_fecha_punto(fecha='YYYY-MM-DD', punto='PUNTO_DE_MEDIDA')
+        # Obtener los datos de un punto para una fecha específica
+        datos = ngData.datos_fecha_punto(fecha='YYYY-MM-DD', punto='PUNTO DE MEDIDA')
         print(datos)
 
-        # 3. Obtener los datos de un punto para un rango de fechas
-        datos = ngData.datos_rango_fechas_punto(fecha_inicio='YYYY-MM-DD', fecha_fin='YYYY-MM-DD', punto='PUNTO_DE_MEDIDA')
+        # Obtener los datos de un punto para un rango de fechas
+        datos = ngData.datos_rango_fechas_punto(fecha_inicio='YYYY-MM-DD', fecha_fin='YYYY-MM-DD', punto='PUNTO DE MEDIDA')
         print(datos)
+        ```
         """
         if apikey:
-            self.apikey: str = apikey
+            self.apikey: str = self._decode(apikey)
         else:
             raise ValueError("La API key es requerida. Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co")
         self._endpoints: dict[str, str] = {
@@ -131,7 +134,11 @@ class ngDataManager:
             raise ValueError(f"La fecha ingresada no es válida. Formato esperado: YYYY-MM-DD. Fecha ingresada: {fecha}")
         if self._validar_punto(punto):
             try:
-                response = requests.get(self.data_url, headers=self.headers, params={'fecha': f'eq.{fecha}', 'punto': f'eq.{punto.upper()}'})
+                params = [
+                    ('fecha', f'eq.{fecha}'),
+                    ('punto', f'eq.{punto.upper()}')
+                ]
+                response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
                 return response.json()[0]
             except requests.exceptions.RequestException as e:
@@ -187,7 +194,12 @@ class ngDataManager:
 
         if self._validar_punto(punto):
             try:
-                response = requests.get(self.data_url, headers=self.headers, params={'fecha': f'gte.{fecha_inicio}', 'fecha': f'lte.{fecha_fin}', 'punto': f'eq.{punto.upper()}'})
+                params = [
+                    ('fecha', f'gte.{fecha_inicio}'),
+                    ('fecha', f'lte.{fecha_fin}'),
+                    ('punto', f'eq.{punto.upper()}')
+                ]
+                response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
                 return response.json()
             except requests.exceptions.RequestException as e:
