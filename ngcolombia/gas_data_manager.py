@@ -18,6 +18,7 @@ class ngDataManager:
         ## Natural Gas Data Manager:
         Gestiona la conexión y obtención de datos del gas natural de Colombia desde 2019-07-01 hasta la fecha actual.
         Los datos se actualizan a las 6:00 a.m. (UTC-5) todos los días.
+        Fuente de los datos: https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
         Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co
 
         Ejemplo de uso:
@@ -104,6 +105,7 @@ class ngDataManager:
             dict: Diccionario con los datos de gas natural solicitados
 
         Datos entregados:
+        
         - id: Identificador único de la medición.
         - Fecha (YYYY-MM-DD): Fecha de la medición.
         - Punto: Punto de la medición.

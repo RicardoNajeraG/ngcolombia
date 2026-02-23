@@ -2,6 +2,13 @@
 
 Módulo para consultar composición química y algunas propiedades del gas natural en la red colombiana desde 2019-07-01 hasta la fecha actual. Los datos se actualizan diariamente a las 6:00 a.m. (UTC-5).
 
+El módulo automatiza el acceso a los datos. Estos son de acceso público.
+
+Los datos son generados por TGI (Grupo de Energía de Bogotá).
+Enlace a los datos publicados e información técnica:
+
+https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
+
 Datos entregados:
 
 - id: Identificador único de la medición.
