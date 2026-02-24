@@ -140,7 +140,8 @@ class ngDataManager:
             try:
                 params = [
                     ('fecha', f'eq.{fecha}'),
-                    ('punto', f'eq.{punto.upper()}')
+                    ('punto', f'eq.{punto.upper()}'),
+                    ('select', 'hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total')
                 ]
                 response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
@@ -201,7 +202,8 @@ class ngDataManager:
                 params = [
                     ('fecha', f'gte.{fecha_inicio}'),
                     ('fecha', f'lte.{fecha_fin}'),
-                    ('punto', f'eq.{punto.upper()}')
+                    ('punto', f'eq.{punto.upper()}'),
+                    ('select', 'fecha,hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total')
                 ]
                 response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
