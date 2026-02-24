@@ -15,28 +15,32 @@ import base64
 class ngDataManager:
     def __init__(self, apikey: str = None):
         """
+        ## Natural Gas Data Manager:
         Gestiona la conexión y obtención de datos del gas natural de Colombia desde 2019-07-01 hasta la fecha actual.
         Los datos se actualizan a las 6:00 a.m. (UTC-5) todos los días.
+        Fuente de los datos: https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
         Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co
 
         Ejemplo de uso:
-        # 1. Obtener la lista de puntos disponibles
+        ```python
+        # Obtener la lista de puntos disponibles
         from ngcolombia import ngDataManager
 
         ngData = NgDataManager(apikey='su_api_key') # Reemplazar su_api_key por la API key obtenida
         puntos = ngData.obtener_puntos()
         print(puntos)
 
-        # 2. Obtener los datos de un punto para una fecha específica
-        datos = ngData.datos_fecha_punto(fecha='YYYY-MM-DD', punto='PUNTO_DE_MEDIDA')
+        # Obtener los datos de un punto para una fecha específica
+        datos = ngData.datos_fecha_punto(fecha='YYYY-MM-DD', punto='PUNTO DE MEDIDA')
         print(datos)
 
-        # 3. Obtener los datos de un punto para un rango de fechas
-        datos = ngData.datos_rango_fechas_punto(fecha_inicio='YYYY-MM-DD', fecha_fin='YYYY-MM-DD', punto='PUNTO_DE_MEDIDA')
+        # Obtener los datos de un punto para un rango de fechas
+        datos = ngData.datos_rango_fechas_punto(fecha_inicio='YYYY-MM-DD', fecha_fin='YYYY-MM-DD', punto='PUNTO DE MEDIDA')
         print(datos)
+        ```
         """
         if apikey:
-            self.apikey: str = apikey
+            self.apikey: str = self._decode(apikey)
         else:
             raise ValueError("La API key es requerida. Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co")
         self._endpoints: dict[str, str] = {
@@ -63,33 +67,35 @@ class ngDataManager:
 
         try:
             response = requests.get(self.puntos_url, headers=self.headers)
+            if response.status_code == 401:
+                raise ValueError("La API key es inválida. Por favor, verifique la API key ingresada.")
             puntos_data = response.json()
             return [p['punto'] for p in puntos_data]
 
         except Exception as e:
-            print(f"Error al obtener la lista de puntos: {e}")
-            return None
+            raise ValueError(f"Error al obtener la lista de puntos: {e}")
+            
 
     def _validar_punto(self, punto: str) -> bool:
         """
         Valida si el punto solicitado es válido.
         (Algunos puntos pueden no tener datos para todas las fechas)
         """
-        
-        try:
-            lista_puntos = self.obtener_puntos()
+        lista_puntos = self.obtener_puntos()
             
-            if punto.upper() in lista_puntos:
-                return True
+        if punto.upper() in lista_puntos:
+            return True
+
+        posibles = [p for p in lista_puntos if punto.upper() in p]
+        if posibles:
+            print(f"El punto '{punto}' no es válido. ¿Quizás quisiste decir?: {', '.join(posibles)}")
+            return False
+        else:
+            sugerencias = get_close_matches(punto.upper(), lista_puntos, n=5, cutoff=0.6)
+            if sugerencias:
+                print(f"El punto '{punto}' no es válido. ¿Quizás quisiste decir?: {', '.join(sugerencias)}")
             else:
-                sugerencias = get_close_matches(punto.upper(), lista_puntos, n=5, cutoff=0.6)
-                if sugerencias:
-                    print(f"El punto '{punto}' no es válido. ¿Quizás quisiste decir?: {', '.join(sugerencias)}")
-                else:
-                    print(f"El punto '{punto}' no es válido y no se encontraron sugerencias similares.")
-                return False
-        except Exception as e:
-            print(f"Error procesando la respuesta de puntos: {e}")
+                print(f"El punto '{punto}' no es válido y no se encontraron sugerencias similares.")
             return False
     
     def datos_fecha_punto(self, fecha: str, punto: str) -> dict:
@@ -101,6 +107,7 @@ class ngDataManager:
             dict: Diccionario con los datos de gas natural solicitados
 
         Datos entregados:
+        
         - id: Identificador único de la medición.
         - Fecha (YYYY-MM-DD): Fecha de la medición.
         - Punto: Punto de la medición.
@@ -131,7 +138,12 @@ class ngDataManager:
             raise ValueError(f"La fecha ingresada no es válida. Formato esperado: YYYY-MM-DD. Fecha ingresada: {fecha}")
         if self._validar_punto(punto):
             try:
-                response = requests.get(self.data_url, headers=self.headers, params={'fecha': f'eq.{fecha}', 'punto': f'eq.{punto.upper()}'})
+                params = [
+                    ('fecha', f'eq.{fecha}'),
+                    ('punto', f'eq.{punto.upper()}'),
+                    ('select', 'hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total')
+                ]
+                response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
                 return response.json()[0]
             except requests.exceptions.RequestException as e:
@@ -187,11 +199,15 @@ class ngDataManager:
 
         if self._validar_punto(punto):
             try:
-                response = requests.get(self.data_url, headers=self.headers, params={'fecha': f'gte.{fecha_inicio}', 'fecha': f'lte.{fecha_fin}', 'punto': f'eq.{punto.upper()}'})
+                params = [
+                    ('fecha', f'gte.{fecha_inicio}'),
+                    ('fecha', f'lte.{fecha_fin}'),
+                    ('punto', f'eq.{punto.upper()}'),
+                    ('select', 'fecha,hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total')
+                ]
+                response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
                 return response.json()
             except requests.exceptions.RequestException as e:
                 print(f"Error al obtener datos de gas natural: {e}")
                 return None
-        else:
-            raise ValueError(f"El punto '{punto}' no es válido. No se encontraron datos para el punto solicitado.")
