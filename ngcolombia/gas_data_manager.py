@@ -67,33 +67,35 @@ class ngDataManager:
 
         try:
             response = requests.get(self.puntos_url, headers=self.headers)
+            if response.status_code == 401:
+                raise ValueError("La API key es inválida. Por favor, verifique la API key ingresada.")
             puntos_data = response.json()
             return [p['punto'] for p in puntos_data]
 
         except Exception as e:
-            print(f"Error al obtener la lista de puntos: {e}")
-            return None
+            raise ValueError(f"Error al obtener la lista de puntos: {e}")
+            
 
     def _validar_punto(self, punto: str) -> bool:
         """
         Valida si el punto solicitado es válido.
         (Algunos puntos pueden no tener datos para todas las fechas)
         """
-        
-        try:
-            lista_puntos = self.obtener_puntos()
+        lista_puntos = self.obtener_puntos()
             
-            if punto.upper() in lista_puntos:
-                return True
+        if punto.upper() in lista_puntos:
+            return True
+
+        posibles = [p for p in lista_puntos if punto.upper() in p]
+        if posibles:
+            print(f"El punto '{punto}' no es válido. ¿Quizás quisiste decir?: {', '.join(posibles)}")
+            return False
+        else:
+            sugerencias = get_close_matches(punto.upper(), lista_puntos, n=5, cutoff=0.6)
+            if sugerencias:
+                print(f"El punto '{punto}' no es válido. ¿Quizás quisiste decir?: {', '.join(sugerencias)}")
             else:
-                sugerencias = get_close_matches(punto.upper(), lista_puntos, n=5, cutoff=0.6)
-                if sugerencias:
-                    print(f"El punto '{punto}' no es válido. ¿Quizás quisiste decir?: {', '.join(sugerencias)}")
-                else:
-                    print(f"El punto '{punto}' no es válido y no se encontraron sugerencias similares.")
-                return False
-        except Exception as e:
-            print(f"Error procesando la respuesta de puntos: {e}")
+                print(f"El punto '{punto}' no es válido y no se encontraron sugerencias similares.")
             return False
     
     def datos_fecha_punto(self, fecha: str, punto: str) -> dict:
@@ -207,5 +209,3 @@ class ngDataManager:
             except requests.exceptions.RequestException as e:
                 print(f"Error al obtener datos de gas natural: {e}")
                 return None
-        else:
-            raise ValueError(f"El punto '{punto}' no es válido. No se encontraron datos para el punto solicitado.")
