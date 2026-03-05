@@ -40,7 +40,7 @@ class ngDataManager:
         ```
         """
         if apikey:
-            self.apikey: str = self._decode(apikey)
+            self.apikey: str = apikey
         else:
             raise ValueError("La API key es requerida. Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co")
         self._endpoints: dict[str, str] = {
