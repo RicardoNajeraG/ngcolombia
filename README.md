@@ -11,9 +11,7 @@ https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
 
 Datos entregados:
 
-- id: Identificador único de la medición.
 - Fecha (YYYY-MM-DD): Fecha de la medición.
-- Punto: Punto de la medición.
 - Poder calorífico superior (HHV) [kBTU/ft³]
 - N2 [%]
 - CO2 [%]
@@ -30,7 +28,6 @@ Datos entregados:
 - Densidad (ρ) [lb/ft³]
 - Índice de Wobbe respecto al HHV [kBTU/ft³]
 - Total: Suma de los porcentajes en la composición presentada
-- created_at: fecha de ingreso del dato a la db
 
 ## Instalación
 
