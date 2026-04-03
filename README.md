@@ -11,7 +11,7 @@ https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
 
 Datos entregados:
 
-- Fecha (YYYY-MM-DD): Fecha de la medición.
+- Fecha (YYYY-MM-DD): Fecha de la medición (si se solicita un rango de fechas, para un punto). 
 - Poder calorífico superior (HHV) [kBTU/ft³]
 - N2 [%]
 - CO2 [%]
@@ -28,12 +28,6 @@ Datos entregados:
 - Densidad (ρ) [lb/ft³]
 - Índice de Wobbe respecto al HHV [kBTU/ft³]
 - Total: Suma de los porcentajes en la composición presentada
-
-## Instalación
-
-```bash
-pip install ngcolombia
-```
 
 ## Requisitos
 
@@ -65,14 +59,12 @@ datos = ngData.datos_rango_fechas_punto(
 print(datos)
 ```
 
-## API
-
 ### `ngDataManager(apikey: str)`
 
 Clase principal para gestionar la conexión y obtención de datos de gas natural.
 
 **Parámetros:**
-- `apikey` (str): API key requerida. Contactar a ricardo.najera@udea.edu.co para obtenerla.
+- `apikey` (str): API key requerida.
 
 ### Métodos
 
