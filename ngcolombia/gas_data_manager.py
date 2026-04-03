@@ -42,7 +42,7 @@ class ngDataManager:
         if apikey:
             self.apikey: str = apikey
         else:
-            raise ValueError("La API key es requerida. Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co")
+            raise ValueError("La API key es requerida. Más información en https://pypi.org/project/ngcolombia/")
         self._endpoints: dict[str, str] = {
             'host': 'aHR0cHM6Ly9zYW9jd3N6dXlha29jcWpqY2dmei5zdXBhYmFzZS5jby9yZXN0L3YxLw==',
             'pts': 'cHVudG9zX3VuaWNvcz9zZWxlY3Q9cHVudG8=',
@@ -108,9 +108,6 @@ class ngDataManager:
 
         Datos entregados:
         
-        - id: Identificador único de la medición.
-        - Fecha (YYYY-MM-DD): Fecha de la medición.
-        - Punto: Punto de la medición.
         - Poder calorífico superior (HHV) [kBTU/ft³]
         - N2 [%]
         - CO2 [%]
@@ -127,7 +124,6 @@ class ngDataManager:
         - Densidad (ρ) [lb/ft³]
         - Índice de Wobbe respecto al HHV [kBTU/ft³]
         - Total: Suma de los porcentajes en la composición presentada
-        - created_at: fecha de ingreso del dato a la db
         """
 
         try:
@@ -139,9 +135,9 @@ class ngDataManager:
         if self._validar_punto(punto):
             try:
                 params = [
+                    ('select', 'hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total'),
                     ('fecha', f'eq.{fecha}'),
                     ('punto', f'eq.{punto.upper()}'),
-                    ('select', 'hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total')
                 ]
                 response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
@@ -162,9 +158,8 @@ class ngDataManager:
             list[dict]: Lista de diccionarios con los datos de gas natural solicitados
 
         Datos entregados:
-        - id: Identificador único de la medición.
+
         - Fecha (YYYY-MM-DD): Fecha de la medición.
-        - Punto: Punto de la medición.
         - Poder calorífico superior (HHV) [kBTU/ft³]
         - N2 [%]
         - CO2 [%]
@@ -181,7 +176,6 @@ class ngDataManager:
         - Densidad (ρ) [lb/ft³]
         - Índice de Wobbe respecto al HHV [kBTU/ft³]
         - Total: Suma de los porcentajes en la composición presentada
-        - created_at: fecha de ingreso del dato a la db
         """
         
         try:
@@ -200,10 +194,10 @@ class ngDataManager:
         if self._validar_punto(punto):
             try:
                 params = [
+                    ('select', 'fecha,hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total'),
                     ('fecha', f'gte.{fecha_inicio}'),
                     ('fecha', f'lte.{fecha_fin}'),
                     ('punto', f'eq.{punto.upper()}'),
-                    ('select', 'fecha,hv,n2,co2,metano,etano,propano,i_butano,n_butano,i_pentane,n_pentano,hexano,neopentano,gravedad_especifica,densidad,indice_wobbe,total')
                 ]
                 response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
