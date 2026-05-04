@@ -4,7 +4,7 @@ Módulo para obtener datos de gas natural desde 2019-07-01 hasta la fecha actual
 Autor: Ricardo Nájera Giraldo
 Contacto: ricardo.najera@udea.edu.co
 Fecha: 2026-05-04
-Versión: 0.2.1
+Versión: 0.2.2
 """
 
 import requests
@@ -59,23 +59,6 @@ class ngDataManager:
     def _decode(self, string: str) -> str:
         return base64.b64decode(string).decode('utf-8')
 
-    def obtener_puntos(self) -> list[str]:
-        """
-        Entrega la lista de puntos disponibles.
-        Algunos puntos pueden no tener datos para todas las fechas disponibles.
-        """
-
-        try:
-            response = requests.get(self.puntos_url, headers=self.headers)
-            if response.status_code == 401:
-                raise ValueError("La API key es inválida. Por favor, verifique la API key ingresada.")
-            puntos_data = response.json()
-            return [p['punto'] for p in puntos_data]
-
-        except Exception as e:
-            raise ValueError(f"Error al obtener la lista de puntos: {e}")
-            
-
     def _validar_punto(self, punto: str) -> bool:
         """
         Valida si el punto solicitado es válido.
@@ -97,7 +80,23 @@ class ngDataManager:
             else:
                 print(f"El punto '{punto}' no es válido y no se encontraron sugerencias similares.")
             return False
-    
+
+    def obtener_puntos(self) -> list[str]:
+        """
+        Entrega la lista de puntos disponibles.
+        Algunos puntos pueden no tener datos para todas las fechas disponibles.
+        """
+
+        try:
+            response = requests.get(self.puntos_url, headers=self.headers)
+            if response.status_code == 401:
+                raise ValueError("La API key es inválida. Por favor, verifique la API key ingresada.")
+            puntos_data = response.json()
+            return [p['punto'] for p in puntos_data]
+
+        except Exception as e:
+            raise ValueError(f"Error al obtener la lista de puntos: {e}")
+                
     def datos_fecha_punto(self, fecha: str, punto: str) -> dict:
         """
         Args:

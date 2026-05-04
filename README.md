@@ -1,17 +1,17 @@
 # ngcolombia
 
-Módulo para consultar composición química y algunas propiedades del gas natural en la red colombiana desde 2019-07-01 hasta la fecha actual. Los datos se actualizan diariamente a las 6:00 a.m. (UTC-5).
+Módulo para consultar composición química y algunas propiedades del gas natural en la red colombiana desde 2019-07-01 hasta la fecha actual. Los datos se actualizan cada 10 minutos. Los datos entregados corresponden a la última medición en el día consultado.
 
 El módulo automatiza el acceso a los datos. Estos son de acceso público.
 
 Los datos son generados por TGI (Grupo de Energía de Bogotá).
 Enlace a los datos publicados e información técnica:
 
-https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
+[https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/](https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/)
 
 Datos entregados:
 
-- Fecha (YYYY-MM-DD): Fecha de la medición (si se solicita un rango de fechas, para un punto). 
+- Fecha (YYYY-MM-DD): Fecha de la medición
 - Poder calorífico superior (HHV) [kBTU/ft³]
 - N2 [%]
 - CO2 [%]
@@ -32,7 +32,7 @@ Datos entregados:
 ## Requisitos
 
 - Python >= 3.8
-- API key (obtener en: ricardo.najera@udea.edu.co)
+- API key (obtener en: [ricardo.najera@udea.edu.co](mailto:ricardo.najera@udea.edu.co))
 
 ## Uso rápido
 
@@ -64,19 +64,22 @@ print(datos)
 Clase principal para gestionar la conexión y obtención de datos de gas natural.
 
 **Parámetros:**
+
 - `apikey` (str): API key requerida.
 
 ### Métodos
 
-| Método | Descripción |
-|--------|-------------|
-| `obtener_puntos()` | Retorna la lista de puntos de medida disponibles. |
-| `datos_fecha_punto(fecha, punto)` | Obtiene los datos de un punto para una fecha específica (formato YYYY-MM-DD). |
-| `datos_rango_fechas_punto(fecha_inicio, fecha_fin, punto)` | Obtiene los datos de un punto para un rango de fechas. |
+
+| Método                                                     | Descripción                                                                   |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `obtener_puntos()`                                         | Retorna la lista de puntos de medida disponibles.                             |
+| `datos_fecha_punto(fecha, punto)`                          | Obtiene los datos de un punto para una fecha específica (formato YYYY-MM-DD). |
+| `datos_rango_fechas_punto(fecha_inicio, fecha_fin, punto)` | Obtiene los datos de un punto para un rango de fechas.                        |
+
 
 **Nota:** Algunos puntos pueden no tener datos para todas las fechas disponibles. El módulo ofrece sugerencias automáticas si el punto ingresado no es válido.
 
 ## Autor
 
 **Ricardo Nájera**  
-ricardo.najera@udea.edu.co
+[ricardo.najera@udea.edu.co](mailto:ricardo.najera@udea.edu.co)
