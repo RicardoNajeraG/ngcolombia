@@ -3,8 +3,8 @@ Módulo para obtener datos de gas natural desde 2019-07-01 hasta la fecha actual
 
 Autor: Ricardo Nájera Giraldo
 Contacto: ricardo.najera@udea.edu.co
-Fecha: 2026-02-21
-Versión: 0.1.0
+Fecha: 2026-05-04
+Versión: 0.2.1
 """
 
 import requests
@@ -17,9 +17,9 @@ class ngDataManager:
         """
         ## Natural Gas Data Manager:
         Gestiona la conexión y obtención de datos del gas natural de Colombia desde 2019-07-01 hasta la fecha actual.
-        Los datos se actualizan a las 6:00 a.m. (UTC-5) todos los días.
+        Los datos se actualizan cada 10 minutos. Los datos entregados corresponden a la última medición en día consultado.
         Fuente de los datos: https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
-        Para obtener una API key, por favor, contacte a ricardo.najera@udea.edu.co
+        Para obtener una API key contacte a ricardo.najera@udea.edu.co
 
         Ejemplo de uso:
         ```python
@@ -141,12 +141,15 @@ class ngDataManager:
                 ]
                 response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
-                return response.json()[0]
+                if response.json() == []:
+                    print(f"No hay datos para el punto {punto} en la fecha {fecha}")
+                    return None
+                else:
+                    return response.json()[0]
             except requests.exceptions.RequestException as e:
-                print(f"Error al obtener datos de gas natural: {e}")
-                return None
+                raise ValueError(f"Error al obtener datos de gas natural: {e}")
         else:
-            return None
+            raise ValueError(f"El punto {punto} no es válido. Debe ser un punto de medida válido. No es sensible a mayúsculas o minúsculas.")
 
     def datos_rango_fechas_punto(self, fecha_inicio: str, fecha_fin: str, punto: str) -> list[dict]:
         """
@@ -201,7 +204,11 @@ class ngDataManager:
                 ]
                 response = requests.get(self.data_url, headers=self.headers, params=params)
                 response.raise_for_status()
-                return response.json()
+                if response.json() == []:
+                    raise ValueError(f"No hay datos para el punto {punto} en el rango de fechas {fecha_inicio} - {fecha_fin}")
+                else:
+                    return response.json()
             except requests.exceptions.RequestException as e:
-                print(f"Error al obtener datos de gas natural: {e}")
-                return None
+                raise ValueError(f"Error al obtener datos de gas natural: {e}")
+            except ValueError as e:
+                raise ValueError(e)
