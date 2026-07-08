@@ -41,26 +41,22 @@ pip install ngcolombia
 ## Requisitos
 
 - Python >= 3.8
-- API key (obtener en: ricardo.najera@udea.edu.co)
 
 ## Uso rápido
 
 ```python
-from ngcolombia import ngDataManager
-
-# Inicializar con tu API key
-ngData = ngDataManager(apikey='tu_api_key')
+from ngcolombia import reporte_cromatografias
 
 # 1. Obtener la lista de puntos disponibles
-puntos = ngData.obtener_puntos()
+puntos = reporte_cromatografias.obtener_puntos()
 print(puntos)
 
 # 2. Obtener datos de un punto para una fecha específica
-datos = ngData.datos_fecha_punto(fecha='2024-01-15', punto='Sebastopol')
+datos = reporte_cromatografias.fecha_punto(fecha='2024-01-15', punto='Sebastopol')
 print(datos)
 
 # 3. Obtener datos de un punto para un rango de fechas
-datos = ngData.datos_rango_fechas_punto(
+datos = reporte_cromatografias.rango_fechas_punto(
     fecha_inicio='2024-01-01',
     fecha_fin='2024-01-31',
     punto='Zarzal'
@@ -70,22 +66,21 @@ print(datos)
 
 ## API
 
-### `ngDataManager(apikey: str)`
+### `reporte_cromatografias`
 
-Clase principal para gestionar la conexión y obtención de datos de gas natural.
-
-**Parámetros:**
-- `apikey` (str): API key requerida. Contactar a ricardo.najera@udea.edu.co para obtenerla.
+Objeto ya configurado para consultar los datos de gas natural. Se importa directamente desde el paquete, sin necesidad de API key.
 
 ### Métodos
 
 | Método | Descripción |
 |--------|-------------|
 | `obtener_puntos()` | Retorna la lista de puntos de medida disponibles. |
-| `datos_fecha_punto(fecha, punto)` | Obtiene los datos de un punto para una fecha específica (formato YYYY-MM-DD). |
-| `datos_rango_fechas_punto(fecha_inicio, fecha_fin, punto)` | Obtiene los datos de un punto para un rango de fechas. |
+| `fecha_punto(fecha, punto)` | Obtiene los datos de un punto para una fecha específica (formato YYYY-MM-DD). |
+| `rango_fechas_punto(fecha_inicio, fecha_fin, punto)` | Obtiene los datos de un punto para un rango de fechas. |
 
 **Nota:** Algunos puntos pueden no tener datos para todas las fechas disponibles. El módulo ofrece sugerencias automáticas si el punto ingresado no es válido.
+
+Las consultas se cachean localmente en `~/.ngcolombia_cache.db`; las consultas repetidas no vuelven a llamar a la API. Los datos de la fecha actual no se cachean.
 
 ## Autor
 
