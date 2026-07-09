@@ -88,11 +88,17 @@ class ngDataManager:
         if puntos is not None:
             return puntos
         try:
-            response = requests.get(self.puntos_url, headers=self.headers)
+            response = requests.get(self.puntos_url, headers=self.headers, timeout=10)
             if response.status_code == 401:
                 raise ValueError("La API key es inválida. Por favor, verifique la API key ingresada.")
             puntos = [p['punto'] for p in response.json()]
-        except Exception as e:
+        except requests.exceptions.ConnectionError:
+            raise ValueError("No se pudo conectar al servidor. Verifique su conexión a internet.")
+        except requests.exceptions.Timeout:
+            raise ValueError("La solicitud tardó demasiado en responder. Intente nuevamente.")
+        except requests.exceptions.JSONDecodeError as e:
+            raise ValueError(f"La respuesta del servidor no tiene un formato válido: {e}")
+        except requests.exceptions.RequestException as e:
             raise ValueError(f"Error al obtener la lista de puntos: {e}")
         if puntos:
             self._cache.guardar_puntos(puntos)
@@ -138,9 +144,18 @@ class ngDataManager:
                 ('punto', f'eq.{punto.upper()}'),
                 ('select', _CAMPOS)
             ]
-            response = requests.get(self.data_url, headers=self.headers, params=params)
+            response = requests.get(self.data_url, headers=self.headers, params=params, timeout=10)
             response.raise_for_status()
             registros = response.json()
+        except requests.exceptions.ConnectionError:
+            print("No se pudo conectar al servidor. Verifique su conexión a internet.")
+            return None
+        except requests.exceptions.Timeout:
+            print("La solicitud tardó demasiado en responder. Intente nuevamente.")
+            return None
+        except requests.exceptions.JSONDecodeError as e:
+            print(f"La respuesta del servidor no tiene un formato válido: {e}")
+            return None
         except requests.exceptions.RequestException as e:
             print(f"Error al obtener datos de gas natural: {e}")
             return None
@@ -174,9 +189,18 @@ class ngDataManager:
                 ('punto', f'eq.{punto.upper()}'),
                 ('select', _CAMPOS)
             ]
-            response = requests.get(self.data_url, headers=self.headers, params=params)
+            response = requests.get(self.data_url, headers=self.headers, params=params, timeout=10)
             response.raise_for_status()
             registros = response.json()
+        except requests.exceptions.ConnectionError:
+            print("No se pudo conectar al servidor. Verifique su conexión a internet.")
+            return None
+        except requests.exceptions.Timeout:
+            print("La solicitud tardó demasiado en responder. Intente nuevamente.")
+            return None
+        except requests.exceptions.JSONDecodeError as e:
+            print(f"La respuesta del servidor no tiene un formato válido: {e}")
+            return None
         except requests.exceptions.RequestException as e:
             print(f"Error al obtener datos de gas natural: {e}")
             return None
