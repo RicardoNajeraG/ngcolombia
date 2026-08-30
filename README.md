@@ -1,7 +1,7 @@
 
 
 <p align="center">
-  <img src="https://private-user-images.githubusercontent.com/55412834/643171994-bc6c152a-b366-47bb-bb11-eeda2e101e4c.webp?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODgwNDU2OTAsIm5iZiI6MTc4ODA0NTM5MCwicGF0aCI6Ii81NTQxMjgzNC82NDMxNzE5OTQtYmM2YzE1MmEtYjM2Ni00N2JiLWJiMTEtZWVkYTJlMTAxZTRjLndlYnA_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwODI5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDgyOVQyMzE2MzBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iMGU0NzQ4ZWZlNmUwMDRhMTlhYzVlMTY0NGVlMWY3ODhhMmMzOTFlZDc1NWY0NTRlM2I0NjU2NDhkNTYyMWE2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZ3ZWJwIn0.64YqV_5dt5_37VmWsA_HPtvGnm8xH4ktMWpwzZDwXBw" alt="ngcolombia banner" width="720">
+  <img src="https://i.postimg.cc/G3zRc3vv/ngcolombia-banner.webp" alt="ngcolombia banner" width="720">
 </p>
 
 -----------------
