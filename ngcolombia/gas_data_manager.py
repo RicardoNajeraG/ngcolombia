@@ -4,7 +4,7 @@ Módulo para obtener datos de gas natural desde 2019-07-01 hasta un día antes d
 Autor: Ricardo Nájera Giraldo
 Contacto: ricardo.najera@udea.edu.co
 Fecha: 2026-07-08
-Versión: 0.3.1
+Versión: 0.3.2
 """
 
 import base64
@@ -133,11 +133,11 @@ class ngDataManager:
         - Total: Suma de los porcentajes en la composición presentada
         """
         validar_fecha(fecha)
+        if not validar_punto(punto, self.obtener_puntos()):
+            return None
         dato = self._cache.leer_dato(fecha, punto)
         if dato is not None:
             return dato
-        if not validar_punto(punto, self.obtener_puntos()):
-            return None
         try:
             params = [
                 ('fecha', f'eq.{fecha}'),
@@ -177,11 +177,11 @@ class ngDataManager:
         Datos entregados: los mismos campos que fecha_punto, un diccionario por día.
         """
         validar_rango_fechas(fecha_inicio, fecha_fin)
+        if not validar_punto(punto, self.obtener_puntos()):
+            return None
         datos = self._cache.leer_rango(fecha_inicio, fecha_fin, punto)
         if datos is not None:
             return datos
-        if not validar_punto(punto, self.obtener_puntos()):
-            return None
         try:
             params = [
                 ('fecha', f'gte.{fecha_inicio}'),

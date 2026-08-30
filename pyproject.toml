@@ -4,11 +4,21 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ngcolombia"
-version = "0.3.1"
+version = "0.3.2"
 description = "Módulo para consultar composición química y algunas propiedades del gas natural en la red colombiana."
 readme = "README.md"
 requires-python = ">=3.8"
 license = "MIT"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+]
 authors = [
   { name="Ricardo Nájera Giraldo", email="ricardo.najera@udea.edu.co" },
 ]
@@ -17,4 +27,24 @@ dependencies = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/RicardoNajeraG/ngcolombia" 
+"Homepage" = "https://github.com/RicardoNajeraG/ngcolombia"
+
+[tool.setuptools.packages.find]
+include = ["ngcolombia*"]
+exclude = ["tests*"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov",
+    "responses>=0.25",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-markers", "-m", "not integration"]
+markers = ["integration: tests que consultan la API real de Supabase"]
+
+[tool.coverage.run]
+source = ["ngcolombia"]
+branch = true 

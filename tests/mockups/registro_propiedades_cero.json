@@ -1,0 +1,19 @@
+{
+  "fecha": "2024-01-15",
+  "hv": 0.99637,
+  "n2": 1.45,
+  "co2": 0.2217,
+  "metano": 97.9604,
+  "etano": 0.2581,
+  "propano": 0.0543,
+  "i_butano": 0.0216,
+  "n_butano": 0.0082,
+  "i_pentane": 0.008,
+  "n_pentano": 0.0019,
+  "hexano": 0.0158,
+  "neopentano": 0.0,
+  "gravedad_especifica": 0.5657,
+  "densidad": 0.0,
+  "indice_wobbe": 0.0,
+  "total": 100.0
+}

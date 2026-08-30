@@ -1,6 +1,7 @@
 __pycache__/
 ngcolombia.egg-info/
 ngcolombia/__pycache__/
+
 # Python-generated files
 __pycache__/
 *.py[oc]
@@ -8,6 +9,9 @@ build/
 dist/
 wheels/
 *.egg-info
+.coverage
+.pytest_cache/
+htmlcov/
 
 # Virtual environments
 .venv

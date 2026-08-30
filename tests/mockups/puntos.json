@@ -1,0 +1,1505 @@
+[
+  {
+    "punto": "ACACIAS LLANOGAS"
+  },
+  {
+    "punto": "ACACIAS MADIGAS"
+  },
+  {
+    "punto": "ACORDIONERO_PS"
+  },
+  {
+    "punto": "AGUACHICA"
+  },
+  {
+    "punto": "AGUACHICA II"
+  },
+  {
+    "punto": "AGUACLARA"
+  },
+  {
+    "punto": "AGUAZUL"
+  },
+  {
+    "punto": "AGUSTIN CODAZZI"
+  },
+  {
+    "punto": "AIPE"
+  },
+  {
+    "punto": "ALBANIA"
+  },
+  {
+    "punto": "ALCALA"
+  },
+  {
+    "punto": "ALPINA"
+  },
+  {
+    "punto": "ALVARADO"
+  },
+  {
+    "punto": "AMBALEMA"
+  },
+  {
+    "punto": "ANDALUCIA"
+  },
+  {
+    "punto": "ANSERMANUEVO"
+  },
+  {
+    "punto": "APIAY"
+  },
+  {
+    "punto": "APIAY PRODUCCION"
+  },
+  {
+    "punto": "ARCABUCO"
+  },
+  {
+    "punto": "ARMENIA"
+  },
+  {
+    "punto": "BALBOA"
+  },
+  {
+    "punto": "BALLENA"
+  },
+  {
+    "punto": "BARBOSA"
+  },
+  {
+    "punto": "BARRANCA DE UPIA"
+  },
+  {
+    "punto": "BARRANCA DE UPIA INDUSTRIAL"
+  },
+  {
+    "punto": "BARRANCABERMEJA"
+  },
+  {
+    "punto": "BARRANCAS"
+  },
+  {
+    "punto": "BASE MILITAR"
+  },
+  {
+    "punto": "BAVARIA TIBASOSA"
+  },
+  {
+    "punto": "BAZAR DEL VIDRIO"
+  },
+  {
+    "punto": "BECERRIL"
+  },
+  {
+    "punto": "BELEN"
+  },
+  {
+    "punto": "BELENCITO"
+  },
+  {
+    "punto": "BELENCITO IND"
+  },
+  {
+    "punto": "BIOMAX MOSQUERA"
+  },
+  {
+    "punto": "BOJACA"
+  },
+  {
+    "punto": "BOLIVAR"
+  },
+  {
+    "punto": "BOQUERON"
+  },
+  {
+    "punto": "BRICEÑO"
+  },
+  {
+    "punto": "BRICEÑO COGUA"
+  },
+  {
+    "punto": "BRISAS DE BOLIVAR E"
+  },
+  {
+    "punto": "BRISAS DE BOLIVAR R"
+  },
+  {
+    "punto": "BUGA"
+  },
+  {
+    "punto": "BUGA_EDS GUADALAJARA"
+  },
+  {
+    "punto": "BUGA_TOTALGAS"
+  },
+  {
+    "punto": "BUGALAGRANDE"
+  },
+  {
+    "punto": "CAICEDONIA"
+  },
+  {
+    "punto": "CAJICA"
+  },
+  {
+    "punto": "CALARCA"
+  },
+  {
+    "punto": "CALDAS"
+  },
+  {
+    "punto": "CALDAS VIEJO"
+  },
+  {
+    "punto": "CALI"
+  },
+  {
+    "punto": "CALLE 13"
+  },
+  {
+    "punto": "CAMPO CORRALES"
+  },
+  {
+    "punto": "CANDELARIA"
+  },
+  {
+    "punto": "CANTAGALLO E"
+  },
+  {
+    "punto": "CANTAGALLO R"
+  },
+  {
+    "punto": "CAPELLANIA"
+  },
+  {
+    "punto": "CAQUEZA"
+  },
+  {
+    "punto": "CARAMELO"
+  },
+  {
+    "punto": "CARTAGENITA"
+  },
+  {
+    "punto": "CARTAGO"
+  },
+  {
+    "punto": "CASACARA"
+  },
+  {
+    "punto": "CASTILLA"
+  },
+  {
+    "punto": "CEMEX"
+  },
+  {
+    "punto": "CENTAUROS_I"
+  },
+  {
+    "punto": "CERAMITAS"
+  },
+  {
+    "punto": "CERINZA"
+  },
+  {
+    "punto": "CG ARMENIA"
+  },
+  {
+    "punto": "CG GUALANDAY"
+  },
+  {
+    "punto": "CG LA BELLEZA"
+  },
+  {
+    "punto": "CG MARIQUITA"
+  },
+  {
+    "punto": "CG PEREIRA"
+  },
+  {
+    "punto": "CG VASCONIA"
+  },
+  {
+    "punto": "CHIA"
+  },
+  {
+    "punto": "CHIA 2"
+  },
+  {
+    "punto": "CHICORAL"
+  },
+  {
+    "punto": "CHINCHINA"
+  },
+  {
+    "punto": "CHIPAQUE"
+  },
+  {
+    "punto": "CHIPATA"
+  },
+  {
+    "punto": "CHIQUINQUIRA"
+  },
+  {
+    "punto": "CHIRIGUANA"
+  },
+  {
+    "punto": "CHITARAQUE"
+  },
+  {
+    "punto": "CHIVATA"
+  },
+  {
+    "punto": "CIB"
+  },
+  {
+    "punto": "CIB TURBOGAS"
+  },
+  {
+    "punto": "CIRCACIA"
+  },
+  {
+    "punto": "CIUDAD PORFIA"
+  },
+  {
+    "punto": "COGASEN SALDOS POSITIVOS"
+  },
+  {
+    "punto": "COGUA"
+  },
+  {
+    "punto": "COGUA_SENERGYC"
+  },
+  {
+    "punto": "COMBITA"
+  },
+  {
+    "punto": "COMBUST APIAY"
+  },
+  {
+    "punto": "COMBUST BARRANCABERMEJA"
+  },
+  {
+    "punto": "COMBUST CASACARA"
+  },
+  {
+    "punto": "COMBUST CURUMANI"
+  },
+  {
+    "punto": "COMBUST HNUEVO"
+  },
+  {
+    "punto": "COMBUST JAGUA"
+  },
+  {
+    "punto": "COMBUST LA SABANA"
+  },
+  {
+    "punto": "COMBUST MARIQUITA"
+  },
+  {
+    "punto": "COMBUST MIRAFLORES"
+  },
+  {
+    "punto": "COMBUST NOREAN"
+  },
+  {
+    "punto": "COMBUST PADUA"
+  },
+  {
+    "punto": "COMBUST PARATEBUENO"
+  },
+  {
+    "punto": "COMBUST PRADERA"
+  },
+  {
+    "punto": "COMBUST PTEGU"
+  },
+  {
+    "punto": "COMBUST SAN ALBERTO"
+  },
+  {
+    "punto": "COMBUST VASCONIA"
+  },
+  {
+    "punto": "COMBUST VILLAVICENCIO"
+  },
+  {
+    "punto": "COMPLEJO VIZCAYA"
+  },
+  {
+    "punto": "COMPRESORA APIAY"
+  },
+  {
+    "punto": "COMPRESORA BARRANCABERMEJA"
+  },
+  {
+    "punto": "COMPRESORA CASACARA"
+  },
+  {
+    "punto": "COMPRESORA CURUMANI"
+  },
+  {
+    "punto": "COMPRESORA HNUEVO"
+  },
+  {
+    "punto": "COMPRESORA JAGUA"
+  },
+  {
+    "punto": "COMPRESORA LA SABANA"
+  },
+  {
+    "punto": "COMPRESORA MARIQUITA"
+  },
+  {
+    "punto": "COMPRESORA MIRAFLORES"
+  },
+  {
+    "punto": "COMPRESORA NOREAN"
+  },
+  {
+    "punto": "COMPRESORA PADUA"
+  },
+  {
+    "punto": "COMPRESORA PARATEBUENO"
+  },
+  {
+    "punto": "COMPRESORA PRADERA"
+  },
+  {
+    "punto": "COMPRESORA PTE GUILLERMO"
+  },
+  {
+    "punto": "COMPRESORA SAN ALBERTO"
+  },
+  {
+    "punto": "COMPRESORA VASCONIA"
+  },
+  {
+    "punto": "COMPRESORA VENADILLO"
+  },
+  {
+    "punto": "COMPRESORA VILLAVICENCIO"
+  },
+  {
+    "punto": "CONTROVERSIA EQUION"
+  },
+  {
+    "punto": "COTA"
+  },
+  {
+    "punto": "COTA BOGOTA"
+  },
+  {
+    "punto": "COTA GNI"
+  },
+  {
+    "punto": "COYAIMA"
+  },
+  {
+    "punto": "CUCAITA"
+  },
+  {
+    "punto": "CUCUNUBA"
+  },
+  {
+    "punto": "CUESTECITAS"
+  },
+  {
+    "punto": "CUMARAL"
+  },
+  {
+    "punto": "CUPIAGUA"
+  },
+  {
+    "punto": "CURUMANI"
+  },
+  {
+    "punto": "CUSIANA INTERIOR"
+  },
+  {
+    "punto": "CUSIANA LLANOS"
+  },
+  {
+    "punto": "DISTRACOM LERIDA"
+  },
+  {
+    "punto": "DOIMA"
+  },
+  {
+    "punto": "DORIA"
+  },
+  {
+    "punto": "DOSQUEBRADAS"
+  },
+  {
+    "punto": "DRUMMOND"
+  },
+  {
+    "punto": "DRUMMOND PUNTO ENTRADA"
+  },
+  {
+    "punto": "DUITAMA"
+  },
+  {
+    "punto": "DUITAMA II"
+  },
+  {
+    "punto": "EDS LA BALSA"
+  },
+  {
+    "punto": "EDS LOS PINOS"
+  },
+  {
+    "punto": "EDS MELANY"
+  },
+  {
+    "punto": "EL BANCO"
+  },
+  {
+    "punto": "EL BURRO"
+  },
+  {
+    "punto": "EL CARMEN DE CHUCURI"
+  },
+  {
+    "punto": "EL CERRITO"
+  },
+  {
+    "punto": "EL MOLINO"
+  },
+  {
+    "punto": "EL PATA"
+  },
+  {
+    "punto": "EL PORVENIR"
+  },
+  {
+    "punto": "EL PRADO"
+  },
+  {
+    "punto": "EL TANDIL"
+  },
+  {
+    "punto": "ELIOT - CALLE 80"
+  },
+  {
+    "punto": "ESTACION GNC MARIQUITA"
+  },
+  {
+    "punto": "ETERNAL"
+  },
+  {
+    "punto": "FACATATIVA"
+  },
+  {
+    "punto": "FAMILIA"
+  },
+  {
+    "punto": "FANAGRA"
+  },
+  {
+    "punto": "FERTICOL"
+  },
+  {
+    "punto": "FILADELFIA"
+  },
+  {
+    "punto": "FILANDIA"
+  },
+  {
+    "punto": "FIRAVITOBA"
+  },
+  {
+    "punto": "FLORESTA"
+  },
+  {
+    "punto": "FLORIAN"
+  },
+  {
+    "punto": "FLORIDA"
+  },
+  {
+    "punto": "FONSECA"
+  },
+  {
+    "punto": "FORTALECILLAS"
+  },
+  {
+    "punto": "FOSCA"
+  },
+  {
+    "punto": "FRESNO"
+  },
+  {
+    "punto": "FRITO LAY"
+  },
+  {
+    "punto": "FUNZA"
+  },
+  {
+    "punto": "FUNZA II"
+  },
+  {
+    "punto": "FUQUENE"
+  },
+  {
+    "punto": "GACHANCIPA"
+  },
+  {
+    "punto": "GAMARRA"
+  },
+  {
+    "punto": "GAS APIAY"
+  },
+  {
+    "punto": "GASES BARRANCA"
+  },
+  {
+    "punto": "GBS_F"
+  },
+  {
+    "punto": "GBS_I"
+  },
+  {
+    "punto": "GCARIBE CAMPOS MENORES"
+  },
+  {
+    "punto": "GINEBRA"
+  },
+  {
+    "punto": "GNV 4 DIVINAS"
+  },
+  {
+    "punto": "GNV AGUAZUL"
+  },
+  {
+    "punto": "GNV AUTOPISTA MEDELLÍN"
+  },
+  {
+    "punto": "GNV BARBOSA"
+  },
+  {
+    "punto": "GNV BRIO CHIA"
+  },
+  {
+    "punto": "GNV BRIO LOS ANGELES"
+  },
+  {
+    "punto": "GNV CAÑADULZAL BUGA"
+  },
+  {
+    "punto": "GNV COALTRANS"
+  },
+  {
+    "punto": "GNV COLONOS"
+  },
+  {
+    "punto": "GNV CRESERGAS"
+  },
+  {
+    "punto": "GNV CRUCE MOSQUERA"
+  },
+  {
+    "punto": "GNV DANUBIO"
+  },
+  {
+    "punto": "GNV DOSQUEBRADAS"
+  },
+  {
+    "punto": "GNV GUAYABAL"
+  },
+  {
+    "punto": "GNV LA GLORIETA BUGA"
+  },
+  {
+    "punto": "GNV LA MELISA"
+  },
+  {
+    "punto": "GNV LA PAZ"
+  },
+  {
+    "punto": "GNV LA TORRE"
+  },
+  {
+    "punto": "GNV LOS AMARILLOS"
+  },
+  {
+    "punto": "GNV MADRID"
+  },
+  {
+    "punto": "GNV MONTEARROYO"
+  },
+  {
+    "punto": "GNV NUEVA DIANA"
+  },
+  {
+    "punto": "GNV ORO NEGRO"
+  },
+  {
+    "punto": "GNV PEÑAS DEL RIO"
+  },
+  {
+    "punto": "GNV PORVENIR"
+  },
+  {
+    "punto": "GNV PUERTO CALDAS"
+  },
+  {
+    "punto": "GNV PUERTO VALLARTA"
+  },
+  {
+    "punto": "GNV SAN PEDRO"
+  },
+  {
+    "punto": "GNV SAN VICENTE FERRER"
+  },
+  {
+    "punto": "GNV SOL SAN MARTIN"
+  },
+  {
+    "punto": "GNV TERPEL CHIA"
+  },
+  {
+    "punto": "GNV UBATE"
+  },
+  {
+    "punto": "GNV VALLEDUPAR"
+  },
+  {
+    "punto": "GNV VILLAVICENCIO"
+  },
+  {
+    "punto": "GNV_CUMARAL"
+  },
+  {
+    "punto": "GRANADA"
+  },
+  {
+    "punto": "GUACARI"
+  },
+  {
+    "punto": "GUACIRCO"
+  },
+  {
+    "punto": "GUALANDAY"
+  },
+  {
+    "punto": "GUAMAL"
+  },
+  {
+    "punto": "GUAMO"
+  },
+  {
+    "punto": "GUAMO II"
+  },
+  {
+    "punto": "GUATANCUY"
+  },
+  {
+    "punto": "GUAVATA"
+  },
+  {
+    "punto": "GUAYABAL"
+  },
+  {
+    "punto": "GUAYABETAL"
+  },
+  {
+    "punto": "GUAYMARAL"
+  },
+  {
+    "punto": "GUEPSA"
+  },
+  {
+    "punto": "HATO NUEVO"
+  },
+  {
+    "punto": "HEGA - YONDO"
+  },
+  {
+    "punto": "HEGA - YONDO R"
+  },
+  {
+    "punto": "HERVEO"
+  },
+  {
+    "punto": "HOCOL"
+  },
+  {
+    "punto": "HONDA"
+  },
+  {
+    "punto": "IBAGUE"
+  },
+  {
+    "punto": "IMPROARROZ"
+  },
+  {
+    "punto": "INTERCOR"
+  },
+  {
+    "punto": "JAMUNDI"
+  },
+  {
+    "punto": "JAMUNDI PROGASUR"
+  },
+  {
+    "punto": "JAZMIN"
+  },
+  {
+    "punto": "JENESANO"
+  },
+  {
+    "punto": "JESUS MARIA"
+  },
+  {
+    "punto": "KM 8 E"
+  },
+  {
+    "punto": "KM 8 R"
+  },
+  {
+    "punto": "LA BELLEZA"
+  },
+  {
+    "punto": "LA CELIA"
+  },
+  {
+    "punto": "LA CUNCIA"
+  },
+  {
+    "punto": "LA CURVA"
+  },
+  {
+    "punto": "LA DORADA"
+  },
+  {
+    "punto": "LA GLORIA"
+  },
+  {
+    "punto": "LA JAGUA"
+  },
+  {
+    "punto": "LA MATA"
+  },
+  {
+    "punto": "LA PAILA"
+  },
+  {
+    "punto": "LA PAZ"
+  },
+  {
+    "punto": "LA PAZ II"
+  },
+  {
+    "punto": "LA SIERRA"
+  },
+  {
+    "punto": "LA TEBAIDA"
+  },
+  {
+    "punto": "LA TURUA"
+  },
+  {
+    "punto": "LA UNION"
+  },
+  {
+    "punto": "LA VICTORIA CALDAS"
+  },
+  {
+    "punto": "LA VICTORIA VALLE"
+  },
+  {
+    "punto": "LA VIRGINIA"
+  },
+  {
+    "punto": "LADRILLERAS COGUA"
+  },
+  {
+    "punto": "LENGUAZAQUE"
+  },
+  {
+    "punto": "LEONA"
+  },
+  {
+    "punto": "LERIDA"
+  },
+  {
+    "punto": "LIBANO"
+  },
+  {
+    "punto": "LOS PINOS"
+  },
+  {
+    "punto": "MADRID"
+  },
+  {
+    "punto": "MANIZALES"
+  },
+  {
+    "punto": "MANZANARES"
+  },
+  {
+    "punto": "MARIA CONCHITA"
+  },
+  {
+    "punto": "MARIQUITA"
+  },
+  {
+    "punto": "MARQUETALIA"
+  },
+  {
+    "punto": "MARSELLA"
+  },
+  {
+    "punto": "MAYA"
+  },
+  {
+    "punto": "MAYAGUEZ"
+  },
+  {
+    "punto": "MEDINA"
+  },
+  {
+    "punto": "MIRAFLORES"
+  },
+  {
+    "punto": "MONIQUIRA"
+  },
+  {
+    "punto": "MONTENEGRO"
+  },
+  {
+    "punto": "MONTERREY"
+  },
+  {
+    "punto": "MONTERREY ECOPETROL"
+  },
+  {
+    "punto": "MONTERREY PETROBRAS"
+  },
+  {
+    "punto": "MORICHAL"
+  },
+  {
+    "punto": "MORICHE"
+  },
+  {
+    "punto": "MOSQUERA"
+  },
+  {
+    "punto": "MOSQUERA PARQUE"
+  },
+  {
+    "punto": "MOSQUERA TRAMPA"
+  },
+  {
+    "punto": "MOTAVITA"
+  },
+  {
+    "punto": "NATAGAIMA"
+  },
+  {
+    "punto": "NEIRA"
+  },
+  {
+    "punto": "NEIVA"
+  },
+  {
+    "punto": "NEMOCON"
+  },
+  {
+    "punto": "NOBSA"
+  },
+  {
+    "punto": "NOBSA PK85"
+  },
+  {
+    "punto": "OBANDO"
+  },
+  {
+    "punto": "OCENSA MIRAFLORES"
+  },
+  {
+    "punto": "OCENSA PAEZ"
+  },
+  {
+    "punto": "OCENSA PORVENIR"
+  },
+  {
+    "punto": "OICATA"
+  },
+  {
+    "punto": "OLEOFLORES"
+  },
+  {
+    "punto": "OTROS_BABAR"
+  },
+  {
+    "punto": "OTROS_CAPUS"
+  },
+  {
+    "punto": "OTROS_CENOR"
+  },
+  {
+    "punto": "OTROS_CUPLB"
+  },
+  {
+    "punto": "OTROS_GBS"
+  },
+  {
+    "punto": "OTROS_MARCA"
+  },
+  {
+    "punto": "OTROS_PRSV"
+  },
+  {
+    "punto": "PADUA"
+  },
+  {
+    "punto": "PAEZ"
+  },
+  {
+    "punto": "PAILITAS"
+  },
+  {
+    "punto": "PAILITAS II"
+  },
+  {
+    "punto": "PAIPA"
+  },
+  {
+    "punto": "PALAGUA"
+  },
+  {
+    "punto": "PALESTINA"
+  },
+  {
+    "punto": "PALMIRA"
+  },
+  {
+    "punto": "PALMITA"
+  },
+  {
+    "punto": "PAPAYAL"
+  },
+  {
+    "punto": "PAPELES DEL CAUCA"
+  },
+  {
+    "punto": "PARATEBUENO"
+  },
+  {
+    "punto": "PELAYA"
+  },
+  {
+    "punto": "PELDAR"
+  },
+  {
+    "punto": "PEREIRA"
+  },
+  {
+    "punto": "PIEDRAS"
+  },
+  {
+    "punto": "PILOTO BARRANCABERMEJA"
+  },
+  {
+    "punto": "PILOTO CASACARA"
+  },
+  {
+    "punto": "PILOTO CURUMANI"
+  },
+  {
+    "punto": "PILOTO HNUEVO"
+  },
+  {
+    "punto": "PILOTO JAGUA"
+  },
+  {
+    "punto": "PILOTO MARIQUITA"
+  },
+  {
+    "punto": "PILOTO MIRAFLORES"
+  },
+  {
+    "punto": "PILOTO NOREAN"
+  },
+  {
+    "punto": "PILOTO PADUA"
+  },
+  {
+    "punto": "PILOTO PARATEBUENO"
+  },
+  {
+    "punto": "PILOTO PTEGU"
+  },
+  {
+    "punto": "PILOTO SAN ALBERTO"
+  },
+  {
+    "punto": "PILOTO VASCONIA"
+  },
+  {
+    "punto": "PILOTO VILLAVICENCIO"
+  },
+  {
+    "punto": "PLANTA DESHIDRATADORA GALAN"
+  },
+  {
+    "punto": "PLAYA ROJA"
+  },
+  {
+    "punto": "POMPEYA"
+  },
+  {
+    "punto": "PORCELANAS"
+  },
+  {
+    "punto": "PRADERA"
+  },
+  {
+    "punto": "PROMIGAS_E"
+  },
+  {
+    "punto": "PROMIGAS_R"
+  },
+  {
+    "punto": "PROMIORIENTE_E"
+  },
+  {
+    "punto": "PROMIORIENTE_R"
+  },
+  {
+    "punto": "PROTISA"
+  },
+  {
+    "punto": "PUENTE NACIONAL"
+  },
+  {
+    "punto": "PUENTE SOGAMOSO 2"
+  },
+  {
+    "punto": "PUENTE SOGAMOSO E"
+  },
+  {
+    "punto": "PUENTE SOGAMOSO R"
+  },
+  {
+    "punto": "PUERTO BOYACA"
+  },
+  {
+    "punto": "PUERTO PARRA"
+  },
+  {
+    "punto": "PUERTO SALGAR"
+  },
+  {
+    "punto": "PUERTO SALGAR II"
+  },
+  {
+    "punto": "PUERTO WILCHES E"
+  },
+  {
+    "punto": "PUERTO WILCHES R"
+  },
+  {
+    "punto": "PUNTO VIRTUAL TGI"
+  },
+  {
+    "punto": "PURIFICACION"
+  },
+  {
+    "punto": "PURIFICACION PPF"
+  },
+  {
+    "punto": "QUETAME"
+  },
+  {
+    "punto": "QUIMBAYA"
+  },
+  {
+    "punto": "RAQUIRA"
+  },
+  {
+    "punto": "RESTREPO"
+  },
+  {
+    "punto": "RINCON HONDO"
+  },
+  {
+    "punto": "RIO DE ORO"
+  },
+  {
+    "punto": "ROLDANILLO"
+  },
+  {
+    "punto": "SABANA_F"
+  },
+  {
+    "punto": "SABANAGRANDE"
+  },
+  {
+    "punto": "SABOYA"
+  },
+  {
+    "punto": "SACHICA"
+  },
+  {
+    "punto": "SALDAÑA A"
+  },
+  {
+    "punto": "SALDAÑA B"
+  },
+  {
+    "punto": "SALENTO"
+  },
+  {
+    "punto": "SAMACA"
+  },
+  {
+    "punto": "SAN ALBERTO"
+  },
+  {
+    "punto": "SAN DIEGO"
+  },
+  {
+    "punto": "SAN FELIPE"
+  },
+  {
+    "punto": "SAN JORGE"
+  },
+  {
+    "punto": "SAN JOSE DE PARE"
+  },
+  {
+    "punto": "SAN JUAN CESAR"
+  },
+  {
+    "punto": "SAN LUIS"
+  },
+  {
+    "punto": "SAN MARTIN CESAR"
+  },
+  {
+    "punto": "SAN PABLO E"
+  },
+  {
+    "punto": "SAN PABLO R"
+  },
+  {
+    "punto": "SAN PEDRO"
+  },
+  {
+    "punto": "SAN RAFAEL"
+  },
+  {
+    "punto": "SAN ROQUE"
+  },
+  {
+    "punto": "SAN VICENTE DE CHUCURI"
+  },
+  {
+    "punto": "SANMARTIN META"
+  },
+  {
+    "punto": "SANTA CECILIA"
+  },
+  {
+    "punto": "SANTA ROSA DE CABAL"
+  },
+  {
+    "punto": "SANTA ROSA DE VITERBO"
+  },
+  {
+    "punto": "SANTA SOFIA"
+  },
+  {
+    "punto": "SANTANA"
+  },
+  {
+    "punto": "SANTANA METROGAS"
+  },
+  {
+    "punto": "SEBASTOPOL"
+  },
+  {
+    "punto": "SENERGYC NOBSA"
+  },
+  {
+    "punto": "SEVILLA"
+  },
+  {
+    "punto": "SIMIJACA"
+  },
+  {
+    "punto": "SOACHA"
+  },
+  {
+    "punto": "SOGAMOSO"
+  },
+  {
+    "punto": "SOPO"
+  },
+  {
+    "punto": "SOPO LA CALERA"
+  },
+  {
+    "punto": "SORA"
+  },
+  {
+    "punto": "SOTAQUIRA"
+  },
+  {
+    "punto": "SUAITA_PROVISERV"
+  },
+  {
+    "punto": "SUBACHOQUE"
+  },
+  {
+    "punto": "SUCRE"
+  },
+  {
+    "punto": "SUCROMILES"
+  },
+  {
+    "punto": "SUESCA"
+  },
+  {
+    "punto": "SUMICOL"
+  },
+  {
+    "punto": "SURGAS"
+  },
+  {
+    "punto": "SURGAS LA MATA"
+  },
+  {
+    "punto": "SUSA"
+  },
+  {
+    "punto": "SUTAMARCHAN"
+  },
+  {
+    "punto": "SUTATAUSA"
+  },
+  {
+    "punto": "TABIO"
+  },
+  {
+    "punto": "TAMALAMEQUE"
+  },
+  {
+    "punto": "TAURAMENA"
+  },
+  {
+    "punto": "TAURAMENA RECIBO GNC"
+  },
+  {
+    "punto": "TAUSA"
+  },
+  {
+    "punto": "TAUSA II"
+  },
+  {
+    "punto": "TEA BARRANCABERMEJA"
+  },
+  {
+    "punto": "TEA CASACARA"
+  },
+  {
+    "punto": "TEA CURUMANI"
+  },
+  {
+    "punto": "TEA HNUEVO"
+  },
+  {
+    "punto": "TEA JAGUA"
+  },
+  {
+    "punto": "TEA MARIQUITA"
+  },
+  {
+    "punto": "TEA MIRAFLORES"
+  },
+  {
+    "punto": "TEA NOREAN"
+  },
+  {
+    "punto": "TEA PADUA"
+  },
+  {
+    "punto": "TEA PARATEBUENO"
+  },
+  {
+    "punto": "TEA PTEGU"
+  },
+  {
+    "punto": "TEA SAN ALBERTO"
+  },
+  {
+    "punto": "TEA VASCONIA"
+  },
+  {
+    "punto": "TEA VILLAVICENCIO"
+  },
+  {
+    "punto": "TENJO"
+  },
+  {
+    "punto": "TERMO OCOA"
+  },
+  {
+    "punto": "TERMOCENTRO"
+  },
+  {
+    "punto": "TERMODORADA"
+  },
+  {
+    "punto": "TERMOEMCALI"
+  },
+  {
+    "punto": "TERMOMERILECTRICA"
+  },
+  {
+    "punto": "TERMOSIERRA"
+  },
+  {
+    "punto": "TERMOSURIA"
+  },
+  {
+    "punto": "TERMOSURIA_B"
+  },
+  {
+    "punto": "TERMOVALLE"
+  },
+  {
+    "punto": "TIBASOSA"
+  },
+  {
+    "punto": "TIERRADENTRO"
+  },
+  {
+    "punto": "TINJACA"
+  },
+  {
+    "punto": "TOBASIA"
+  },
+  {
+    "punto": "TOCANCIPA"
+  },
+  {
+    "punto": "TOCANCIPA INDUSTRIAL"
+  },
+  {
+    "punto": "TOGUI"
+  },
+  {
+    "punto": "TOQUITOQUI"
+  },
+  {
+    "punto": "TRANSFERENCIA SEBASTOPOL"
+  },
+  {
+    "punto": "TULUA"
+  },
+  {
+    "punto": "TUNJA"
+  },
+  {
+    "punto": "TUNUNGUA"
+  },
+  {
+    "punto": "TUTA"
+  },
+  {
+    "punto": "TUTA II"
+  },
+  {
+    "punto": "TUTA SIDEBOYACA"
+  },
+  {
+    "punto": "UBATE"
+  },
+  {
+    "punto": "UNE"
+  },
+  {
+    "punto": "URUMITA"
+  },
+  {
+    "punto": "USME"
+  },
+  {
+    "punto": "VALLE DE TENZA"
+  },
+  {
+    "punto": "VALLEDUPAR"
+  },
+  {
+    "punto": "VASCONIA"
+  },
+  {
+    "punto": "VELEZ"
+  },
+  {
+    "punto": "VENADILLO"
+  },
+  {
+    "punto": "VENTAQUEMADA"
+  },
+  {
+    "punto": "VEREDA GUACIRCO"
+  },
+  {
+    "punto": "VILLA DE LEYVA"
+  },
+  {
+    "punto": "VILLAMARIA"
+  },
+  {
+    "punto": "VILLANUEVA CASANARE"
+  },
+  {
+    "punto": "VILLANUEVA GUAJIRA"
+  },
+  {
+    "punto": "VILLAVICENCIO"
+  },
+  {
+    "punto": "VILLAVICENCIO_GNI"
+  },
+  {
+    "punto": "YONDO 2"
+  },
+  {
+    "punto": "YONDO E"
+  },
+  {
+    "punto": "YONDO R"
+  },
+  {
+    "punto": "YOPAL"
+  },
+  {
+    "punto": "YUMBO"
+  },
+  {
+    "punto": "ZAPATOSA II"
+  },
+  {
+    "punto": "ZARZAL"
+  },
+  {
+    "punto": "ZIPACON"
+  },
+  {
+    "punto": "ZIPAQUIRA"
+  },
+  {
+    "punto": "ZONA FRANCA_GDO"
+  }
+]
