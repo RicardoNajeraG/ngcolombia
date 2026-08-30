@@ -1,0 +1,40 @@
+[
+  {
+    "fecha": "2024-01-16",
+    "hv": 1.14709,
+    "n2": 0.489,
+    "co2": 1.759,
+    "metano": 82.138,
+    "etano": 11.247,
+    "propano": 3.347,
+    "i_butano": 0.454,
+    "n_butano": 0.419,
+    "i_pentane": 0.093,
+    "n_pentano": 0.045,
+    "hexano": 0.009,
+    "neopentano": 0.0,
+    "gravedad_especifica": 0.68,
+    "densidad": 0.0,
+    "indice_wobbe": 0.0,
+    "total": 100.0
+  },
+  {
+    "fecha": "2024-01-17",
+    "hv": 1.14592,
+    "n2": 0.491,
+    "co2": 1.696,
+    "metano": 82.348,
+    "etano": 11.167,
+    "propano": 3.292,
+    "i_butano": 0.449,
+    "n_butano": 0.413,
+    "i_pentane": 0.091,
+    "n_pentano": 0.044,
+    "hexano": 0.009,
+    "neopentano": 0.0,
+    "gravedad_especifica": 0.68,
+    "densidad": 0.0,
+    "indice_wobbe": 0.0,
+    "total": 100.0
+  }
+]

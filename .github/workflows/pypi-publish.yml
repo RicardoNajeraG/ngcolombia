@@ -3,19 +3,41 @@ name: Publicar en PyPI
 on:
   push:
     branches:
-      - main 
+      - main
 
 permissions:
   contents: read
-  id-token: write 
 
 jobs:
-  build-n-publish:
+  test:
     runs-on: ubuntu-latest
-    environment: release
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Instalar el paquete y las dependencias de test
+        run: pip install -e . pytest pytest-cov responses
+
+      - name: Unit tests
+        run: pytest
+
+      - name: Integration tests
+        run: pytest -m integration --override-ini="addopts=-ra --strict-markers"
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

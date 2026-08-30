@@ -6,20 +6,26 @@ Módulo interno: no forma parte de la API pública del paquete.
 from datetime import datetime
 from difflib import get_close_matches
 
+from ._tiempo import hoy_bogota
+
 FECHA_MINIMA = "2019-07-01"
 
 
 def validar_fecha(fecha: str) -> datetime:
     """
-    Valida que la fecha tenga formato YYYY-MM-DD y no sea posterior a hoy.
+    Valida que la fecha tenga formato YYYY-MM-DD, no sea posterior a hoy
+    en America/Bogotá y no sea anterior a FECHA_MINIMA (2019-07-01).
     Devuelve el datetime correspondiente o lanza ValueError.
     """
     try:
         fecha_dt = datetime.strptime(fecha, "%Y-%m-%d")
     except (ValueError, TypeError):
         raise ValueError(f"La fecha ingresada no es válida. Formato esperado: YYYY-MM-DD. Fecha ingresada: {fecha}")
-    if fecha_dt > datetime.now():
-        raise ValueError(f"La fecha ingresada no puede ser posterior a la fecha actual. Fecha actual: {datetime.now().strftime('%Y-%m-%d')}")
+    hoy = hoy_bogota()
+    if fecha > hoy:
+        raise ValueError(f"La fecha ingresada no puede ser posterior a la fecha actual. Fecha actual: {hoy}")
+    if fecha_dt < datetime.strptime(FECHA_MINIMA, "%Y-%m-%d"):
+        raise ValueError(f"La fecha ingresada no puede ser anterior a {FECHA_MINIMA}. Fecha ingresada: {fecha}")
     return fecha_dt
 
 
@@ -30,9 +36,6 @@ def validar_rango_fechas(fecha_inicio: str, fecha_fin: str) -> tuple:
     """
     inicio_dt = validar_fecha(fecha_inicio)
     fin_dt = validar_fecha(fecha_fin)
-    minimo_dt = datetime.strptime(FECHA_MINIMA, "%Y-%m-%d")
-    if inicio_dt < minimo_dt:
-        raise ValueError(f"La fecha de inicio no puede ser anterior a {FECHA_MINIMA}. Fecha ingresada: {fecha_inicio}")
     if inicio_dt > fin_dt:
         raise ValueError(f"La fecha de inicio no puede ser posterior a la fecha de fin. Recibido: fecha_inicio={fecha_inicio}, fecha_fin={fecha_fin}")
     return inicio_dt, fin_dt
