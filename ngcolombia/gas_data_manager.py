@@ -1,17 +1,19 @@
 """
-Módulo para obtener datos de gas natural desde 2019-07-01 hasta un día antes de la fecha actual.
+Módulo para obtener datos de gas natural desde 2019-07-01 hasta la fecha actual
+(los datos del día en curso pueden estar incompletos y no se cachean).
 
 Autor: Ricardo Nájera Giraldo
 Contacto: ricardo.najera@udea.edu.co
-Fecha: 2026-07-08
-Versión: 0.3.2
+Fecha: 2026-08-30
+Versión: 0.4.0
 """
 
 import base64
 
 import requests
 
-from ._cache import CacheLocal
+from ._cache import AUSENTE, CacheLocal
+from ._tiempo import hoy_bogota
 from ._validacion import validar_fecha, validar_punto, validar_rango_fechas
 
 _CAMPOS = (
@@ -26,11 +28,11 @@ class ngDataManager:
 
         """
         ## Natural Gas Data Manager:
-        Gestiona la conexión y obtención de datos del gas natural de Colombia desde 2019-07-01 hasta un día antes de la fecha actual.
-        Los datos se actualizan a las 1:10 a.m. (UTC-5) todos los días.
+        Gestiona la conexión y obtención de datos del gas natural de Colombia desde 2019-07-01 hasta la fecha actual (los datos del día en curso pueden estar incompletos y no se cachean).
+        Los datos se actualizan a las 12:10 a.m. (UTC-5) todos los días.
         Fuente de los datos: https://beo.tgi.com.co/estadisticas/poder-calorifico-del-gas/
 
-        Las consultas se almacenan en una caché local
+        Las consultas se almacenan en una caché local persistente.
 
         Ejemplo de uso:
         ```python
@@ -78,6 +80,10 @@ class ngDataManager:
     def _decode(self, string: str) -> str:
         return base64.b64decode(string).decode('utf-8')
 
+    def limpiar_cache(self) -> None:
+        """Vacía la caché local (puntos, mediciones y ausencias)."""
+        self._cache.vaciar()
+
     def obtener_puntos(self) -> list:
         """
         Entrega la lista de puntos disponibles.
@@ -91,6 +97,7 @@ class ngDataManager:
             response = requests.get(self.puntos_url, headers=self.headers, timeout=10)
             if response.status_code == 401:
                 raise ValueError("La API key es inválida. Por favor, verifique la API key ingresada.")
+            response.raise_for_status()
             puntos = [p['punto'] for p in response.json()]
         except requests.exceptions.ConnectionError:
             raise ValueError("No se pudo conectar al servidor. Verifique su conexión a internet.")
@@ -136,6 +143,9 @@ class ngDataManager:
         if not validar_punto(punto, self.obtener_puntos()):
             return None
         dato = self._cache.leer_dato(fecha, punto)
+        if dato is AUSENTE:
+            print(f"No hay datos disponibles para el punto '{punto.upper()}' en la fecha {fecha}.")
+            return None
         if dato is not None:
             return dato
         try:
@@ -148,18 +158,16 @@ class ngDataManager:
             response.raise_for_status()
             registros = response.json()
         except requests.exceptions.ConnectionError:
-            print("No se pudo conectar al servidor. Verifique su conexión a internet.")
-            return None
+            raise ValueError("No se pudo conectar al servidor. Verifique su conexión a internet.")
         except requests.exceptions.Timeout:
-            print("La solicitud tardó demasiado en responder. Intente nuevamente.")
-            return None
+            raise ValueError("La solicitud tardó demasiado en responder. Intente nuevamente.")
         except requests.exceptions.JSONDecodeError as e:
-            print(f"La respuesta del servidor no tiene un formato válido: {e}")
-            return None
+            raise ValueError(f"La respuesta del servidor no tiene un formato válido: {e}")
         except requests.exceptions.RequestException as e:
-            print(f"Error al obtener datos de gas natural: {e}")
-            return None
+            raise ValueError(f"Error al obtener datos de gas natural: {e}")
         if not registros:
+            if fecha < hoy_bogota():
+                self._cache.guardar_ausencias([fecha], punto)
             print(f"No hay datos disponibles para el punto '{punto.upper()}' en la fecha {fecha}.")
             return None
         self._cache.guardar_datos(registros, punto)
@@ -179,13 +187,13 @@ class ngDataManager:
         validar_rango_fechas(fecha_inicio, fecha_fin)
         if not validar_punto(punto, self.obtener_puntos()):
             return None
-        datos = self._cache.leer_rango(fecha_inicio, fecha_fin, punto)
-        if datos is not None:
-            return datos
+        cacheados, faltantes = self._cache.leer_rango(fecha_inicio, fecha_fin, punto)
+        if not faltantes:
+            return cacheados
         try:
             params = [
-                ('fecha', f'gte.{fecha_inicio}'),
-                ('fecha', f'lte.{fecha_fin}'),
+                ('fecha', f'gte.{min(faltantes)}'),
+                ('fecha', f'lte.{max(faltantes)}'),
                 ('punto', f'eq.{punto.upper()}'),
                 ('select', _CAMPOS)
             ]
@@ -193,20 +201,25 @@ class ngDataManager:
             response.raise_for_status()
             registros = response.json()
         except requests.exceptions.ConnectionError:
-            print("No se pudo conectar al servidor. Verifique su conexión a internet.")
-            return None
+            raise ValueError("No se pudo conectar al servidor. Verifique su conexión a internet.")
         except requests.exceptions.Timeout:
-            print("La solicitud tardó demasiado en responder. Intente nuevamente.")
-            return None
+            raise ValueError("La solicitud tardó demasiado en responder. Intente nuevamente.")
         except requests.exceptions.JSONDecodeError as e:
-            print(f"La respuesta del servidor no tiene un formato válido: {e}")
-            return None
+            raise ValueError(f"La respuesta del servidor no tiene un formato válido: {e}")
         except requests.exceptions.RequestException as e:
-            print(f"Error al obtener datos de gas natural: {e}")
-            return None
+            raise ValueError(f"Error al obtener datos de gas natural: {e}")
         if registros:
             self._cache.guardar_datos(registros, punto)
-        return registros
+        recibidas = {r.get("fecha") for r in registros}
+        ausentes = [f for f in faltantes if f not in recibidas]
+        if ausentes:
+            self._cache.guardar_ausencias(ausentes, punto)
+        por_fecha = {r["fecha"]: r for r in cacheados if r.get("fecha")}
+        for registro in registros:
+            fecha = registro.get("fecha")
+            if fecha:
+                por_fecha[fecha] = registro
+        return [por_fecha[fecha] for fecha in sorted(por_fecha)]
 
     def composicion_gri3(self, fecha: str, punto: str) -> dict:
         """

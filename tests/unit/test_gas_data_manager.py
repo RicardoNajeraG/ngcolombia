@@ -1,10 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import unquote
 
 import pytest
 import requests
 import responses
 
+from ngcolombia._tiempo import hoy_bogota
 from ngcolombia.gas_data_manager import ngDataManager
 
 # Fecha de los registros reales en tests/mockups/registro_dia.json
@@ -144,38 +145,38 @@ def test_fecha_punto_sin_datos_devuelve_none(manager_con_puntos, capsys):
 
 
 @responses.activate
-def test_fecha_punto_error_conexion_devuelve_none(manager_con_puntos, capsys):
+def test_fecha_punto_error_conexion_lanza(manager_con_puntos):
     responses.get(
         manager_con_puntos.data_url,
         body=requests.exceptions.ConnectionError(),
     )
-    assert manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA") is None
-    assert "No se pudo conectar" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="No se pudo conectar"):
+        manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA")
 
 
 @responses.activate
-def test_fecha_punto_timeout_devuelve_none(manager_con_puntos, capsys):
+def test_fecha_punto_timeout_lanza(manager_con_puntos):
     responses.get(manager_con_puntos.data_url, body=requests.exceptions.Timeout())
-    assert manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA") is None
-    assert "tardó demasiado" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="tardó demasiado"):
+        manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA")
 
 
 @responses.activate
-def test_fecha_punto_json_invalido_devuelve_none(manager_con_puntos, capsys):
+def test_fecha_punto_json_invalido_lanza(manager_con_puntos):
     responses.get(
         manager_con_puntos.data_url,
         body="<html>error</html>",
         content_type="text/html",
     )
-    assert manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA") is None
-    assert "formato válido" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="formato válido"):
+        manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA")
 
 
 @responses.activate
-def test_fecha_punto_error_http_devuelve_none(manager_con_puntos, capsys):
+def test_fecha_punto_error_http_lanza(manager_con_puntos):
     responses.get(manager_con_puntos.data_url, status=500, json=[])
-    assert manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA") is None
-    assert "Error al obtener datos" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="Error al obtener datos"):
+        manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA")
 
 
 @responses.activate
@@ -191,7 +192,7 @@ def test_fecha_punto_usa_cache_en_segunda_llamada(manager_con_puntos, cargar_moc
 @responses.activate
 def test_fecha_punto_no_cachea_datos_de_hoy(manager_con_puntos, cargar_mockup):
     registro = dict(cargar_mockup("registro_dia.json"))
-    registro["fecha"] = datetime.now().strftime("%Y-%m-%d")
+    registro["fecha"] = hoy_bogota()
     responses.get(manager_con_puntos.data_url, json=[registro])
     responses.get(manager_con_puntos.data_url, json=[registro])
     hoy = registro["fecha"]
@@ -221,13 +222,11 @@ def test_rango_sirve_desde_cache(manager_con_puntos, cargar_mockup):
 
 
 @responses.activate
-def test_rango_incompleto_de_api_no_queda_cacheado(manager_con_puntos, cargar_mockup):
-    """Comportamiento real capturado de la API: CUSIANA LLANOS no tiene datos
-    para 2024-01-15, así que un rango de 3 días devuelve solo 2 registros.
-    La caché exige el rango completo, por lo que la segunda llamada vuelve
-    a consultar la API en lugar de servir el rango incompleto."""
+def test_rango_incompleto_de_api_queda_cacheado(manager_con_puntos, cargar_mockup):
+    """CUSIANA LLANOS no tiene datos para 2024-01-15: el rango de 3 días
+    devuelve 2 registros. La ausencia se cachea, así que la segunda llamada
+    no vuelve a consultar la API."""
     registros = cargar_mockup("registros_rango_incompleto.json")
-    responses.get(manager_con_puntos.data_url, json=registros)
     responses.get(manager_con_puntos.data_url, json=registros)
     primero = manager_con_puntos.rango_fechas_punto(
         "2024-01-15", "2024-01-17", "CUSIANA LLANOS"
@@ -238,7 +237,7 @@ def test_rango_incompleto_de_api_no_queda_cacheado(manager_con_puntos, cargar_mo
     assert primero == segundo == registros
     assert len(primero) == 2
     assert [r["fecha"] for r in primero] == ["2024-01-16", "2024-01-17"]
-    assert len(responses.calls) == 2
+    assert len(responses.calls) == 1
 
 
 def test_rango_invalido_lanza(manager_con_puntos):
@@ -256,46 +255,38 @@ def test_rango_punto_invalido_devuelve_none(manager_con_puntos):
 
 
 @responses.activate
-def test_rango_error_conexion_devuelve_none(manager_con_puntos, capsys):
+def test_rango_error_conexion_lanza(manager_con_puntos):
     responses.get(
         manager_con_puntos.data_url,
         body=requests.exceptions.ConnectionError(),
     )
-    assert (
-        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA") is None
-    )
-    assert "No se pudo conectar" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="No se pudo conectar"):
+        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA")
 
 
 @responses.activate
-def test_rango_timeout_devuelve_none(manager_con_puntos, capsys):
+def test_rango_timeout_lanza(manager_con_puntos):
     responses.get(manager_con_puntos.data_url, body=requests.exceptions.Timeout())
-    assert (
-        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA") is None
-    )
-    assert "tardó demasiado" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="tardó demasiado"):
+        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA")
 
 
 @responses.activate
-def test_rango_json_invalido_devuelve_none(manager_con_puntos, capsys):
+def test_rango_json_invalido_lanza(manager_con_puntos):
     responses.get(
         manager_con_puntos.data_url,
         body="<html>error</html>",
         content_type="text/html",
     )
-    assert (
-        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA") is None
-    )
-    assert "formato válido" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="formato válido"):
+        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA")
 
 
 @responses.activate
-def test_rango_error_http_devuelve_none(manager_con_puntos, capsys):
+def test_rango_error_http_lanza(manager_con_puntos):
     responses.get(manager_con_puntos.data_url, status=500, json=[])
-    assert (
-        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA") is None
-    )
-    assert "Error al obtener datos" in capsys.readouterr().out
+    with pytest.raises(ValueError, match="Error al obtener datos"):
+        manager_con_puntos.rango_fechas_punto(FECHA_DIA, FECHA_FIN, "BALLENA")
 
 
 @responses.activate
@@ -379,3 +370,76 @@ def test_propiedades_iso_sin_datos_lanza(manager_con_puntos):
     responses.get(manager_con_puntos.data_url, json=[])
     with pytest.raises(ValueError, match="No hay datos disponibles"):
         manager_con_puntos.propiedades_iso(FECHA_DIA, "BALLENA")
+
+
+@responses.activate
+def test_fecha_punto_sin_datos_historicos_cachea_ausencia(
+    manager_con_puntos, capsys
+):
+    responses.get(manager_con_puntos.data_url, json=[])
+    assert manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA") is None
+    assert manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA") is None
+    assert len(responses.calls) == 1
+    assert "No hay datos disponibles" in capsys.readouterr().out
+
+
+@responses.activate
+def test_fecha_punto_sin_datos_de_hoy_no_cachea_ausencia(manager_con_puntos):
+    hoy = hoy_bogota()
+    responses.get(manager_con_puntos.data_url, json=[])
+    responses.get(manager_con_puntos.data_url, json=[])
+    assert manager_con_puntos.fecha_punto(hoy, "BALLENA") is None
+    assert manager_con_puntos.fecha_punto(hoy, "BALLENA") is None
+    assert len(responses.calls) == 2
+
+
+@responses.activate
+def test_rango_reutiliza_dias_de_fecha_punto(manager_con_puntos, cargar_mockup):
+    registros = cargar_mockup("registros_rango.json")
+    responses.get(manager_con_puntos.data_url, json=[registros[0]])
+    responses.get(manager_con_puntos.data_url, json=registros[1:])
+    manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA")
+    resultado = manager_con_puntos.rango_fechas_punto(
+        FECHA_DIA, FECHA_FIN, "BALLENA"
+    )
+    assert resultado == registros
+    assert len(responses.calls) == 2
+    url = unquote(responses.calls[1].request.url)
+    assert "fecha=gte.2026-08-25" in url
+    assert "fecha=lte.2026-08-26" in url
+
+
+@responses.activate
+def test_rango_que_termina_hoy_solo_vuelve_a_pedir_hoy(
+    manager_con_puntos, cargar_mockup
+):
+    hoy = hoy_bogota()
+    ayer = (datetime.strptime(hoy, "%Y-%m-%d") - timedelta(days=1)).strftime(
+        "%Y-%m-%d"
+    )
+    registro_ayer = dict(cargar_mockup("registro_dia.json"))
+    registro_ayer["fecha"] = ayer
+    registro_hoy = dict(cargar_mockup("registro_dia.json"))
+    registro_hoy["fecha"] = hoy
+    responses.get(manager_con_puntos.data_url, json=[registro_ayer, registro_hoy])
+    responses.get(manager_con_puntos.data_url, json=[registro_hoy])
+    primero = manager_con_puntos.rango_fechas_punto(ayer, hoy, "BALLENA")
+    segundo = manager_con_puntos.rango_fechas_punto(ayer, hoy, "BALLENA")
+    assert primero == segundo == [registro_ayer, registro_hoy]
+    assert len(responses.calls) == 2
+    url = unquote(responses.calls[1].request.url)
+    assert f"fecha=gte.{hoy}" in url
+    assert f"fecha=lte.{hoy}" in url
+
+
+@responses.activate
+def test_limpiar_cache_vuelve_a_consultar(manager_con_puntos, cargar_mockup):
+    registro = cargar_mockup("registro_dia.json")
+    responses.get(manager_con_puntos.puntos_url, json=cargar_mockup("puntos.json"))
+    responses.get(manager_con_puntos.data_url, json=[registro])
+    responses.get(manager_con_puntos.data_url, json=[registro])
+    primero = manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA")
+    manager_con_puntos.limpiar_cache()
+    segundo = manager_con_puntos.fecha_punto(FECHA_DIA, "BALLENA")
+    assert primero == segundo == registro
+    assert len(responses.calls) == 3

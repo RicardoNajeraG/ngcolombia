@@ -1,9 +1,12 @@
+
+
 <p align="center">
   <img src="https://private-user-images.githubusercontent.com/55412834/643171994-bc6c152a-b366-47bb-bb11-eeda2e101e4c.webp?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3ODgwNDU2OTAsIm5iZiI6MTc4ODA0NTM5MCwicGF0aCI6Ii81NTQxMjgzNC82NDMxNzE5OTQtYmM2YzE1MmEtYjM2Ni00N2JiLWJiMTEtZWVkYTJlMTAxZTRjLndlYnA_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwODI5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDgyOVQyMzE2MzBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1iMGU0NzQ4ZWZlNmUwMDRhMTlhYzVlMTY0NGVlMWY3ODhhMmMzOTFlZDc1NWY0NTRlM2I0NjU2NDhkNTYyMWE2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZ3ZWJwIn0.64YqV_5dt5_37VmWsA_HPtvGnm8xH4ktMWpwzZDwXBw" alt="ngcolombia banner" width="720">
 </p>
 
-<h1 align="center">ngcolombia</h1>
+-----------------
 
+<h1 align="center">ngcolombia</h1>
 <p align="center">
   Composición química, poder calorífico e índice de Wobbe del gas natural en la red colombiana, desde Python.
 </p>
@@ -42,7 +45,7 @@ Ideal para ingenieros de gas, analistas del sector energético, desarrolladores 
 - Consulta la composición química, el **poder calorífico superior (HHV)**, la **gravedad específica** y el **índice de Wobbe** del gas natural por fecha y punto de medición en la red.
 - Convierte la composición al formato estándar **GRI-3**.
 - Entrega propiedades en **unidades ISO** (kWh/m³, kg/m³).
-- Cachea localmente las consultas para evitar descargas repetidas (`~/.ngcolombia_cache.db`).
+- Cachea localmente las consultas de forma persistente (Linux: `~/.local/share/ngcolombia/ngcolombia_cache.db`; macOS: `~/Library/Application Support/ngcolombia/ngcolombia_cache.db`; Windows: `%LOCALAPPDATA%\ngcolombia\ngcolombia_cache.db`). La ruta se puede cambiar con la variable de entorno `NGCOLOMBIA_CACHE`.
 - Sin necesidad de consulta manual del portal de TGI.
 
 ## Instalación
@@ -68,6 +71,7 @@ Objeto ya configurado para consultar los datos de gas natural. Se importa direct
 | `rango_fechas_punto(fecha_inicio, fecha_fin, punto)` | Obtiene los datos de un punto para un rango de fechas.                          |
 | `composicion_gri3(fecha, punto)`                     | Transforma la composición del gas al formato GRI-3.                             |
 | `propiedades_iso(fecha, punto)`                      | Calcula propiedades del gas en unidades ISO.                                    |
+| `limpiar_cache()`                                    | Vacía la caché local (puntos, mediciones y ausencias).                          |
 
 ### Datos entregados por `fecha_punto` y `rango_fechas_punto`
 
@@ -169,11 +173,14 @@ print(propiedades)
 
 ## Comportamiento
 
-- Las fechas deben tener formato `YYYY-MM-DD`, no pueden ser futuras y el rango disponible inicia en `2019-07-01`.
+- Las fechas deben tener formato `YYYY-MM-DD`, no pueden ser futuras respecto al día actual en America/Bogotá y el rango disponible inicia en `2019-07-01`.
 - Los nombres de punto no distinguen mayúsculas de minúsculas.
 - Si el punto ingresado no es válido, el módulo imprime sugerencias automáticas.
 - Algunos puntos pueden no tener datos para todas las fechas disponibles.
-- Las consultas se cachean localmente; los datos del día actual no se cachean.
+- Las consultas se cachean de forma persistente; los datos del día actual (America/Bogotá) no se cachean.
+- Los rangos reutilizan los días ya cacheados y solo descargan las fechas que faltan. Los días históricos sin datos se recuerdan para no volver a consultarlos.
+- Los errores de red o del servidor lanzan `ValueError`.
+- `limpiar_cache()` vacía la caché local.
 
 ## Preguntas frecuentes
 

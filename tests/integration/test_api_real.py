@@ -6,9 +6,13 @@ datos fueron verificados al crear estos tests; los datos históricos son
 inmutables, así que las aserciones son estrictas.
 """
 
+from datetime import datetime, timedelta
+
 import pytest
 
 import ngcolombia
+from ngcolombia._cache import AUSENTE
+from ngcolombia._tiempo import hoy_bogota
 from ngcolombia.gas_data_manager import ngDataManager
 
 pytestmark = pytest.mark.integration
@@ -40,10 +44,12 @@ _CAMPOS_ESPERADOS = {
 
 @pytest.fixture
 def manager_real(tmp_path):
-    return ngDataManager(
+    instancia = ngDataManager(
         apikey=ngcolombia._APIKEY,
-        cache_path=str(tmp_path / "cache.db"),
+        cache_path=str(tmp_path / "ngcolombia_cache.db"),
     )
+    yield instancia
+    instancia._cache.close()
 
 
 def _requerir_punto(manager):
@@ -107,3 +113,32 @@ def test_rango_incompleto_real(manager_real):
     datos = manager_real.rango_fechas_punto("2024-01-15", "2024-01-17", "CUSIANA LLANOS")
     assert isinstance(datos, list)
     assert [r["fecha"] for r in datos] == ["2024-01-16", "2024-01-17"]
+
+
+def test_rango_incompleto_segunda_llamada_usa_cache(manager_real):
+    puntos = manager_real.obtener_puntos()
+    if "CUSIANA LLANOS" not in puntos:
+        pytest.skip("CUSIANA LLANOS ya no está en la lista de puntos de la API")
+    primero = manager_real.rango_fechas_punto(
+        "2024-01-15", "2024-01-17", "CUSIANA LLANOS"
+    )
+    segundo = manager_real.rango_fechas_punto(
+        "2024-01-15", "2024-01-17", "CUSIANA LLANOS"
+    )
+    assert primero == segundo
+    assert [r["fecha"] for r in segundo] == ["2024-01-16", "2024-01-17"]
+    assert manager_real._cache.leer_dato("2024-01-15", "CUSIANA LLANOS") is AUSENTE
+
+
+def test_rango_hasta_hoy_incluye_dia_historico(manager_real):
+    _requerir_punto(manager_real)
+    hoy = hoy_bogota()
+    ayer = (datetime.strptime(hoy, "%Y-%m-%d") - timedelta(days=1)).strftime(
+        "%Y-%m-%d"
+    )
+    datos = manager_real.rango_fechas_punto(ayer, hoy, PUNTO)
+    assert isinstance(datos, list)
+    fechas = [r["fecha"] for r in datos]
+    if ayer not in fechas:
+        pytest.skip(f"No hay datos de {PUNTO} para {ayer}")
+    assert ayer in fechas

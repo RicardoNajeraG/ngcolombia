@@ -28,7 +28,9 @@ def cargar_mockup():
 def manager(tmp_path):
     """ngDataManager con apikey de prueba y caché en directorio temporal."""
     apikey = base64.b64encode(b"clave-de-prueba").decode()
-    return ngDataManager(apikey=apikey, cache_path=str(tmp_path / "cache.db"))
+    instancia = ngDataManager(apikey=apikey, cache_path=str(tmp_path / "ngcolombia_cache.db"))
+    yield instancia
+    instancia._cache.close()
 
 
 @pytest.fixture

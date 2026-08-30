@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from ngcolombia._tiempo import hoy_bogota
 from ngcolombia._validacion import (
     FECHA_MINIMA,
     validar_fecha,
@@ -25,7 +26,7 @@ def test_validar_fecha_valida_devuelve_datetime():
 
 
 def test_validar_fecha_hoy_es_valida():
-    hoy = datetime.now().strftime("%Y-%m-%d")
+    hoy = hoy_bogota()
     resultado = validar_fecha(hoy)
     assert resultado.strftime("%Y-%m-%d") == hoy
 
@@ -52,9 +53,22 @@ def test_validar_fecha_formato_invalido(fecha):
 
 
 def test_validar_fecha_futura_lanza():
-    futura = (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%d")
+    futura = (
+        datetime.strptime(hoy_bogota(), "%Y-%m-%d") + timedelta(days=1)
+    ).strftime("%Y-%m-%d")
     with pytest.raises(ValueError, match="posterior a la fecha actual"):
         validar_fecha(futura)
+
+
+def test_validar_fecha_hoy_bogota_fijo_es_valida(monkeypatch):
+    monkeypatch.setattr("ngcolombia._validacion.hoy_bogota", lambda: "2026-08-30")
+    assert validar_fecha("2026-08-30") == datetime(2026, 8, 30)
+
+
+def test_validar_fecha_manana_bogota_lanza(monkeypatch):
+    monkeypatch.setattr("ngcolombia._validacion.hoy_bogota", lambda: "2026-08-30")
+    with pytest.raises(ValueError, match="posterior a la fecha actual"):
+        validar_fecha("2026-08-31")
 
 
 def test_validar_fecha_anterior_a_minima_lanza():
