@@ -13,7 +13,7 @@
 
 |          |                                                                                                                                                                                                    |
 | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Paquete  | [![PyPI - Version](https://img.shields.io/pypi/v/ngcolombia.svg)](https://pypi.org/project/ngcolombia/)  [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ngcolombia.svg)](https://pypi.org/project/ngcolombia/) |
+| Paquete  | [![PyPI - Version](https://img.shields.io/pypi/v/ngcolombia?logo=pypi&logoColor=white)](https://pypi.org/project/ngcolombia/)  [![Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue?logo=python&logoColor=white)](https://pypi.org/project/ngcolombia/) |
 | Build    | [![Publish to PyPI](https://github.com/RicardoNajeraG/ngcolombia/actions/workflows/pypi-publish.yml/badge.svg)](https://github.com/RicardoNajeraG/ngcolombia/actions/workflows/pypi-publish.yml) |
 | Meta     | [![License](https://img.shields.io/github/license/RicardoNajeraG/ngcolombia.svg)](https://github.com/RicardoNajeraG/ngcolombia/blob/main/LICENSE) [![Last Commit](https://img.shields.io/github/last-commit/RicardoNajeraG/ngcolombia.svg)](https://github.com/RicardoNajeraG/ngcolombia/commits/main) [![Repo Stars](https://img.shields.io/github/stars/RicardoNajeraG/ngcolombia.svg?style=social)](https://github.com/RicardoNajeraG/ngcolombia) |
 

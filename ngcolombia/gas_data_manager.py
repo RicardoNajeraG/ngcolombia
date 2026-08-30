@@ -5,7 +5,7 @@ Módulo para obtener datos de gas natural desde 2019-07-01 hasta la fecha actual
 Autor: Ricardo Nájera Giraldo
 Contacto: ricardo.najera@udea.edu.co
 Fecha: 2026-08-30
-Versión: 0.4.2
+Versión: 0.4.3
 """
 
 import base64
