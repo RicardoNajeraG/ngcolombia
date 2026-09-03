@@ -17,6 +17,30 @@
 | Build    | [![Publish to PyPI](https://github.com/RicardoNajeraG/ngcolombia/actions/workflows/pypi-publish.yml/badge.svg)](https://github.com/RicardoNajeraG/ngcolombia/actions/workflows/pypi-publish.yml) |
 | Meta     | [![License](https://img.shields.io/github/license/RicardoNajeraG/ngcolombia.svg)](https://github.com/RicardoNajeraG/ngcolombia/blob/main/LICENSE) [![Last Commit](https://img.shields.io/github/last-commit/RicardoNajeraG/ngcolombia.svg)](https://github.com/RicardoNajeraG/ngcolombia/commits/main) [![Repo Stars](https://img.shields.io/github/stars/RicardoNajeraG/ngcolombia.svg?style=social)](https://github.com/RicardoNajeraG/ngcolombia) |
 
+## Bot de Telegram
+
+<table>
+<tr>
+<td valign="middle" align="center">
+<a href="https://t.me/ngcolombia_bot">
+<img src="https://i.postimg.cc/SKpR2qST/ngcolombia-bot-qr.webp" alt="QR del bot de Telegram ngcolombia" width="200">
+</a>
+</td>
+<td valign="top">
+
+Consulta los datos de la librería desde Telegram, **sin escribir código**.
+
+El bot [@ngcolombia_bot](https://t.me/ngcolombia_bot) recibe una **fecha** y un **punto de medición** y entrega:
+
+- la **composición** [Inertes, CH4, C2H6, C3H8 y pesados (I-Butano + N-Butano + I-Pentano + N-Pentano + Hexano + Neopentano)]
+- las **propiedades** [Poder calorífico superior (kWh/m3), Gravedad específica e Índice de Wobbe (kWh/m3)]
+
+Escanea el QR o ábrelo en [Telegram](https://t.me/ngcolombia_bot).
+
+</td>
+</tr>
+</table>
+
 ## ¿Qué es `ngcolombia`?
 
 `ngcolombia` es una librería de Python que automatiza la consulta de la **cromatografía del gas natural** (composición química, poder calorífico HHV, gravedad específica e índice de Wobbe) en los puntos de medición de la red colombiana, con datos históricos desde el **2019-07-01**, publicados diariamente por **TGI (Grupo de Energía de Bogotá)**.
@@ -27,6 +51,7 @@ Ideal para ingenieros de gas, analistas del sector energético, desarrolladores 
 
 ## Tabla de contenido
 
+- [Bot de Telegram](#bot-de-telegram)
 - [Características](#características)
 - [Instalación](#instalación)
 - [API](#api)
